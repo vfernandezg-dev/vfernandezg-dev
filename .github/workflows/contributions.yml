@@ -28,6 +28,9 @@ jobs:
           USERNAME: ${{ github.repository_owner }}
           SETTING_JSON: .github/contributions.json
 
+      - name: Leave out the star and fork counters
+        run: node .github/scripts/trim-calendar.mjs profile-3d-contrib
+
       - name: Commit the new drawing
         run: |
           git config user.name "github-actions[bot]"
