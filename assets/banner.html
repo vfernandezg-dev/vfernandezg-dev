@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Profile banner</title>
+    <style>
+      /*
+       * Source of banner-light.png and banner-dark.png: same fonts and colors as vfernandezg.dev.
+       * To redraw them, open this file in a browser, set data-theme="dark" on <html> for the
+       * dark one, and capture the card at twice its size (2560 x 760).
+       */
+      @font-face {
+        font-family: Geist;
+        src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist:vf@latest/latin-wght-normal.woff2') format('woff2');
+        font-weight: 100 900;
+      }
+      @font-face {
+        font-family: 'JetBrains Mono';
+        src: url('https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono:vf@latest/latin-wght-normal.woff2') format('woff2');
+        font-weight: 100 800;
+      }
+      :root {
+        --bg: #fafafa;
+        --fg: #18181b;
+        --muted: #52525b;
+        --line: #e4e4e7;
+        --accent: #047857;
+      }
+      :root[data-theme='dark'] {
+        --bg: #09090b;
+        --fg: #f4f4f5;
+        --muted: #a1a1aa;
+        --line: #27272a;
+        --accent: #34d399;
+      }
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+      .card {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        width: 1280px;
+        height: 380px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: var(--bg);
+        padding: 46px 60px 42px;
+        color: var(--fg);
+        font-family: Geist, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .mono {
+        font-family: 'JetBrains Mono', monospace;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+      }
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 19px;
+      }
+      .brand {
+        color: var(--fg);
+        font-weight: 500;
+        letter-spacing: -0.01em;
+      }
+      .brand b,
+      .status i {
+        color: var(--accent);
+        font-weight: inherit;
+        font-style: normal;
+      }
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+      }
+      .status i {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      h1 {
+        margin: auto 0 0;
+        font-size: 84px;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: -0.035em;
+      }
+      .role {
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 30px;
+        letter-spacing: -0.01em;
+      }
+      .foot {
+        margin-top: 38px;
+        border-top: 1px solid var(--line);
+        padding-top: 22px;
+        font-size: 17px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="top">
+        <span class="mono brand">vfernandezg<b>.</b>dev</span>
+        <span class="mono status"><i></i>Trujillo, Peru · Remote · UTC−5</span>
+      </div>
+      <h1>Valentin Fernandez</h1>
+      <p class="role">Full Stack &amp; Automation Engineer</p>
+      <div class="mono foot">Internal systems · Automation · Data pipelines · Cloud</div>
+    </div>
+  </body>
+</html>
