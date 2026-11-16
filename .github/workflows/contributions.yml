@@ -1,0 +1,41 @@
+# Redraws the 3D contribution calendar shown in the profile README and commits it to
+# profile-3d-contrib/. The colors are set in .github/contributions.json.
+name: Contributions
+
+on:
+  schedule:
+    - cron: '0 10 * * *' # every day at 05:00 in Peru (UTC-5)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: contributions
+  cancel-in-progress: true
+
+jobs:
+  calendar:
+    name: Draw the 3D calendar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Generate the SVG files
+        uses: yoshi389111/github-profile-3d-contrib@7d95e7d4cdc028dd1e1cbd957d65f35efb12ae39 # v0.9.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+          SETTING_JSON: .github/contributions.json
+
+      - name: Commit the new drawing
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile-3d-contrib
+          if git diff --cached --quiet; then
+            echo "The calendar has not changed."
+          else
+            git commit -m "Actualiza el calendario de contribuciones"
+            git push
+          fi
